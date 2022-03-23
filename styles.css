@@ -1,0 +1,51 @@
+h1 {
+  text-align: center;
+}
+
+body, section {
+  background-color: gainsboro;
+}
+
+.cards {
+    width: 60px;
+    height: 80px;
+    background-color: red;
+    margin: 5px;
+    border-radius: 5%;
+    cursor: pointer;
+  }
+
+.back {
+background:-webkit-repeating-linear-gradient(45deg,#fd0000,#ff0000 10px,#ce6c6c 0,#ce6c6c 20px);
+ background:-o-repeating-linear-gradient(45deg,#fd0000,#ff0000 10px,#ce6c6c 0,#ce6c6c 20px);
+ background:repeating-linear-gradient(45deg,#fd0000,#ff0000 10px,#ce6c6c 0,#ce6c6c 20px);
+}
+
+.front {
+  background-color: white;
+}
+
+
+  .firstRow, .secondRow, .thirdRow, .fourthRow, .fifthRow, .sixthRow {
+    width: 100%;
+    height: auto;
+    background-color: #fff0;
+  }
+
+#tableGame div {
+      display: flex;
+      /* flex-direction: row; */
+  }
+
+  #tableGame {
+    display: grid;
+    justify-content: center;
+  }
+
+.dispNone {
+  display: none;
+}
+
+span {
+  font-size: 45px;
+}
