@@ -7,14 +7,16 @@ let emojis = [0x1F600, 0x1F600, 0x1F604, 0x1F604, 0x1F34A, 0x1F34A, 0x1F344, 0x1
                 0x1F5FA, 0x1F5FA, 0x23F0, 0x23F0, 0x1F579, 0x1F579,
                 0x1F431, 0x1F431, 0x1F42A, 0x1F42A, 0x1F439, 0x1F439, 0x1F424, 0x1F424];
 
-
-const card = document.getElementById('div');
-
 const cards = document.getElementsByClassName("cards");
 
 const figure = document.getElementsByTagName('span');
 
-const displayFig = document.querySelector('span');
+const timer = document.querySelector('div[id="timer"] > p');
+
+//timer.addEventListener("onload", timeCount);
+
+let flippedC;
+
 
 // Ordenación aleatoria de los emojis
 function shuffle(array) {
@@ -50,30 +52,57 @@ for(let i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", flipCard);
 }
 
+
 // Función que levanta la carta y muestra la figura/emoji
-function flipCard(i) { //REDEFINIR FUNCION
-    card[i].classList.add('flip-vertical-right', 'front');
-    card[i].classList.remove('back');
-    displayFig.classList.toggle('dispNone');
+function flipCard(flippedC) { //REDEFINIR FUNCION
 
-    flipOne = true;
+    //flipOne = true;
 
-    if(flipOne && flipTwo) { //REVISAR
+    console.log('You clicked: ' + this.id);
+
+    this.classList.add('flip-vertical-right', 'front');
+    this.classList.remove('back');
+    
+    this.querySelector('div[id^="div"] > span').classList.toggle('dispNone');
+
+    flippedC+1;
+
+    if(flippedC == 2) {
         checkPairing();
     }
+
+    return flippedC;
+
 }
+
+    // flipOne = true;
+
+    // if(flipOne && flipTwo) { //REVISAR
+    //     checkPairing();
+    // }
+
 
 
 // Comprovar si las dos cartas levantados tienen la misma figura
-function checkPairing() {
+function checkPairing(figure) {
 
-        if(emojis[0] == emojis[1]) {
+        if(figure[i] == figure[i]) {
             console.log('¡Has encontrado pareja!');
         }
         else {
             console.log('No has encontrado pareja...');
         }
+
+        flippedC = 0;
 }
 
 
+function timeCount() {
+    let time;
 
+    while (time < 1000) {
+        time++;
+    }
+
+    timer.innerHTML = time;
+}
