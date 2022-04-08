@@ -1,5 +1,4 @@
-var flipOne = false;
-var flipTwo = false;
+
 
 // Array de emojis
 let emojis = [0x1F600, 0x1F600, 0x1F604, 0x1F604, 0x1F34A, 0x1F34A, 0x1F344, 0x1F344,  0x1F37F, 0x1F37F, 0x1F363, 0x1F363, 
@@ -11,11 +10,7 @@ const cards = document.getElementsByClassName("cards");
 
 const figure = document.getElementsByTagName('span');
 
-const timer = document.querySelector('div[id="timer"] > p');
-
-//timer.addEventListener("onload", timeCount);
-
-let flippedC;
+const timer = document.getElementById('timer');
 
 
 // Ordenación aleatoria de los emojis
@@ -54,55 +49,65 @@ for(let i = 0; i < cards.length; i++) {
 
 
 // Función que levanta la carta y muestra la figura/emoji
-function flipCard(flippedC) { //REDEFINIR FUNCION
-
-    //flipOne = true;
+function flipCard() { //REDEFINIR FUNCION
 
     console.log('You clicked: ' + this.id);
 
-    this.classList.add('flip-vertical-right', 'front');
+    this.classList.add('flip-vertical-right', 'front', 'noClick');
     this.classList.remove('back');
     
     this.querySelector('div[id^="div"] > span').classList.toggle('dispNone');
 
-    flippedC+1;
-
-    if(flippedC == 2) {
-        checkPairing();
-    }
-
-    return flippedC;
+    flipCounts();
 
 }
 
-    // flipOne = true;
+   
 
-    // if(flipOne && flipTwo) { //REVISAR
-    //     checkPairing();
-    // }
+var flippedC = 0;
+
+function flipCounts() {
+
+    flippedC += 1;
+
+    timeCount();
+
+    if(flippedC == 2) {
+        checkPairing(emojis);
+    }
+}
 
 
 
 // Comprovar si las dos cartas levantados tienen la misma figura
-function checkPairing(figure) {
+function checkPairing(emojis) {
 
-        if(figure[i] == figure[i]) {
-            console.log('¡Has encontrado pareja!');
+    var iterator = emojis.values();
+
+    //emojis.forEach(element => console.log(element));
+
+    for(let i = 0; i < emojis.length ; i++) {
+        
+        if(iterator.next().value ==  iterator.next().value) {
+            console.log('Has encontrado pareja!');
+            break;
         }
+
         else {
             console.log('No has encontrado pareja...');
+            break;
         }
 
-        flippedC = 0;
+    }
+    
+    flippedC = 0;
 }
 
-
+// Gestiona el tiempo y los movimientos
 function timeCount() {
-    let time;
+    var time = 0;
 
-    while (time < 1000) {
-        time++;
-    }
+    time += 1;
 
     timer.innerHTML = time;
 }

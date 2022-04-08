@@ -48,10 +48,22 @@ body, section {
     justify-content: center;
   }
 
+  #tableInfo > div {
+    width: 10%;
+  }
+
+  #tableInfo > div > p {
+    display: inline-block;
+  }
+
 .dispNone {
   display: none;
 }
 
 span {
   font-size: 45px;
+}
+
+.noClick {
+  pointer-events: none;  
 }
