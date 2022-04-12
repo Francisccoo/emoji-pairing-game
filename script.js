@@ -12,6 +12,11 @@ const figure = document.getElementsByTagName('span');
 
 const timer = document.getElementById('timer');
 
+const tagMoves = document.getElementById('moves');
+
+var flippedC = 0;
+
+var moves = 0;
 
 // Ordenación aleatoria de los emojis
 function shuffle(array) {
@@ -37,7 +42,7 @@ shuffle(emojis);
 // Asignamos los emojis a cada carta
 for(let i = 0 ; i < figure.length ; i++) {
 
-    figure[i].innerHTML = String.fromCodePoint(emojis[i]);;
+    figure[i].innerHTML = String.fromCodePoint(emojis[i]);
   
 }
 
@@ -58,56 +63,74 @@ function flipCard() { //REDEFINIR FUNCION
     
     this.querySelector('div[id^="div"] > span').classList.toggle('dispNone');
 
+
+    //timeCount();
+    movesCount();
+
     flipCounts();
 
 }
 
-   
-
-var flippedC = 0;
 
 function flipCounts() {
 
     flippedC += 1;
 
-    timeCount();
-
     if(flippedC == 2) {
-        checkPairing(emojis);
+        checkPairing(figure);
     }
 }
 
 
 
 // Comprovar si las dos cartas levantados tienen la misma figura
-function checkPairing(emojis) {
+function checkPairing(figure) {
 
-    var iterator = emojis.values();
+    // var iterator = emojis.values();
+    // var iterator_2 = emojis.values();
 
-    //emojis.forEach(element => console.log(element));
+   
 
-    for(let i = 0; i < emojis.length ; i++) {
+    // for(let i = 0; i < figure.length ; i++) {
+
+    //     for(let j = 0; i < figure.length; j++) {
+
+    //         if(!figure[i].classList.contains('dispNone') && !figure[j].classList.contains('dispNone')) {
+
+    //             if(String.fromCodePoint(emojis[i]) == String.fromCodePoint(emojis[j])) {
+    //                 console.log('Has encontrado pareja!');
+    //                 break;
+    //             }
         
-        if(iterator.next().value ==  iterator.next().value) {
-            console.log('Has encontrado pareja!');
-            break;
-        }
-
-        else {
-            console.log('No has encontrado pareja...');
-            break;
-        }
-
-    }
+    //             else {
+    //                 console.log('No has encontrado pareja...');
+    //                 break;
+    //             }
+    //         }
+    //     }
+        
+    // }
     
     flippedC = 0;
 }
 
+function movesCount() {
+   
+
+    moves += 1;
+
+    tagMoves.innerHTML = moves;
+}
+
 // Gestiona el tiempo y los movimientos
 function timeCount() {
+
     var time = 0;
 
-    time += 1;
+    for (var i = 0; i < Infinity; i++) {
 
-    timer.innerHTML = time;
+        time += 1;
+
+        timer.innerHTML = time;
+    }
 }
