@@ -18,18 +18,20 @@ var flippedC = 0;
 
 var moves = 0;
 
+let elementClicked = false;
+
 // Ordenación aleatoria de los emojis
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
   
-    // While there remain elements to shuffle...
+    // Mientras queden elementos que reorganizar...
     while (currentIndex != 0) {
   
-      // Pick a remaining element...
+      // Coge un elemento restante
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
   
-      // And swap it with the current element.
+      // He intercambialo con el elemento actual
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];
     }
@@ -63,8 +65,15 @@ function flipCard() { //REDEFINIR FUNCION
     
     this.querySelector('div[id^="div"] > span').classList.toggle('dispNone');
 
+    // elementClicked = true;
 
-    //timeCount();
+    
+    // if(elementClicked) {
+    //     timeCount();
+    // }
+
+    // elementClicked = false;
+    
     movesCount();
 
     flipCounts();
@@ -74,9 +83,9 @@ function flipCard() { //REDEFINIR FUNCION
 
 function flipCounts() {
 
-    flippedC += 1;
+    flippedC++;
 
-    if(flippedC == 2) {
+ if(flippedC == 2) {
         checkPairing(figure);
     }
 }
@@ -86,37 +95,39 @@ function flipCounts() {
 // Comprovar si las dos cartas levantados tienen la misma figura
 function checkPairing(figure) {
 
-    // var iterator = emojis.values();
-    // var iterator_2 = emojis.values();
+    // const emojis_2 = emojis;
+
+    // shuffle(emojis_2);
+
+    var iterator = emojis.values();
+    var iterator_2 = emojis.values();
 
    
 
-    // for(let i = 0; i < figure.length ; i++) {
+    for(let i = 0; i < figure.length ; i++) {
 
-    //     for(let j = 0; i < figure.length; j++) {
+        for(let j = 1; j < figure.length ; j++) {
 
-    //         if(!figure[i].classList.contains('dispNone') && !figure[j].classList.contains('dispNone')) {
+            if(!figure[i].classList.contains('dispNone') && (!figure[j].classList.contains('dispNone'))) {
 
-    //             if(String.fromCodePoint(emojis[i]) == String.fromCodePoint(emojis[j])) {
-    //                 console.log('Has encontrado pareja!');
-    //                 break;
-    //             }
+                if(figure[i].innerHTML === figure[j].innerHTML) {
+                    console.log('Has encontrado pareja!');
+                }
         
-    //             else {
-    //                 console.log('No has encontrado pareja...');
-    //                 break;
-    //             }
-    //         }
-    //     }
-        
-    // }
+                else {
+                    console.log('No has encontrado pareja...');
+                }
+            }
+        }      
+
+        break;
+    }
     
     flippedC = 0;
 }
 
 function movesCount() {
    
-
     moves += 1;
 
     tagMoves.innerHTML = moves;
@@ -125,12 +136,13 @@ function movesCount() {
 // Gestiona el tiempo y los movimientos
 function timeCount() {
 
-    var time = 0;
+    var sec = 0;
 
-    for (var i = 0; i < Infinity; i++) {
+    var time = setInterval(function() {
 
-        time += 1;
+        sec++;
 
-        timer.innerHTML = time;
-    }
+        timer.innerHTML = sec;
+
+    }, 1000);
 }
