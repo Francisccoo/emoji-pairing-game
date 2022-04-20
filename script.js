@@ -1,10 +1,12 @@
 
 
 // Array de emojis
-let emojis = [0x1F600, 0x1F600, 0x1F604, 0x1F604, 0x1F34A, 0x1F34A, 0x1F344, 0x1F344,  0x1F37F, 0x1F37F, 0x1F363, 0x1F363, 
+const emojis = [0x1F600, 0x1F600, 0x1F604, 0x1F604, 0x1F34A, 0x1F34A, 0x1F344, 0x1F344,  0x1F37F, 0x1F37F, 0x1F363, 0x1F363, 
                 0x1F370, 0x1F370, 0x1F355, 0x1F355, 0x1F354, 0x1F354, 0x1F35F, 0x1F35F, 0x1F6C0, 0x1F6C0, 0x1F48E, 0x1F48E, 
                 0x1F5FA, 0x1F5FA, 0x23F0, 0x23F0, 0x1F579, 0x1F579,
                 0x1F431, 0x1F431, 0x1F42A, 0x1F42A, 0x1F439, 0x1F439, 0x1F424, 0x1F424];
+
+let arrayResults = [];
 
 const cards = document.getElementsByClassName("cards");
 
@@ -13,8 +15,6 @@ const figure = document.getElementsByTagName('span');
 const timer = document.getElementById('timer');
 
 const tagMoves = document.getElementById('moves');
-
-var flippedC = 0;
 
 var moves = 0;
 
@@ -56,7 +56,7 @@ for(let i = 0; i < cards.length; i++) {
 
 
 // Función que levanta la carta y muestra la figura/emoji
-function flipCard() { //REDEFINIR FUNCION
+function flipCard(elementClicked) { //REDEFINIR FUNCION
 
     console.log('You clicked: ' + this.id);
 
@@ -65,65 +65,46 @@ function flipCard() { //REDEFINIR FUNCION
     
     this.querySelector('div[id^="div"] > span').classList.toggle('dispNone');
 
-    // elementClicked = true;
+    elementClicked = true;
 
-    
-    // if(elementClicked) {
-    //     timeCount();
-    // }
+    var result = this.querySelector('div[id^="div"] > span').innerHTML;
 
-    // elementClicked = false;
-    
-    movesCount();
+    arrayResults.push(result);
 
-    flipCounts();
+    if(arrayResults.length > 1) {
 
-}
+        checkPairing();
 
-
-function flipCounts() {
-
-    flippedC++;
-
- if(flippedC == 2) {
-        checkPairing(figure);
-    }
+    }  
 }
 
 
 
 // Comprovar si las dos cartas levantados tienen la misma figura
-function checkPairing(figure) {
+function checkPairing() {
 
-    // const emojis_2 = emojis;
 
-    // shuffle(emojis_2);
+    if(arrayResults[0] === arrayResults[1]) {
 
-    var iterator = emojis.values();
-    var iterator_2 = emojis.values();
+        console.log('Has encontrado pareja!');
+        arrayResults = [];
 
-   
+    }
+    else {
 
-    for(let i = 0; i < figure.length ; i++) {
-
-        for(let j = 1; j < figure.length ; j++) {
-
-            if(!figure[i].classList.contains('dispNone') && (!figure[j].classList.contains('dispNone'))) {
-
-                if(figure[i].innerHTML === figure[j].innerHTML) {
-                    console.log('Has encontrado pareja!');
-                }
         
-                else {
-                    console.log('No has encontrado pareja...');
+        console.log('No has encontrado pareja...');
+
+            for(let i = 0; i < figure.length; i++) {
+                if(!figure[i].classList.contains('dispNone')) {
+                    cards[i].classList.remove('flip-vertical-right', 'front', 'noClick');
+                    cards[i].classList.add('back');
+                    figure[i].classList.toggle('dispNone');
                 }
             }
-        }      
-
-        break;
+        arrayResults = [];
     }
-    
-    flippedC = 0;
+   
 }
 
 function movesCount() {
