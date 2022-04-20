@@ -67,3 +67,7 @@ span {
 .noClick {
   pointer-events: none;  
 }
+
+.checked {
+  opacity: 0.5;
+}
