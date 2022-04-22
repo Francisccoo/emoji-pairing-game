@@ -2,8 +2,13 @@ h1 {
   text-align: center;
 }
 
+h1, p {
+  color: #ffff;
+  font-family: sans-serif;
+}
+
 body, section {
-  background-color: gainsboro;
+  background-color: #56a8ff;
 }
 
 .cards {
@@ -50,10 +55,15 @@ body, section {
 
   #tableInfo > div {
     width: 10%;
+    text-align: center;
   }
 
   #tableInfo > div > p {
     display: inline-block;
+  }
+
+  p {
+    font-size: 24px;
   }
 
 .dispNone {
