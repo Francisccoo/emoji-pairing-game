@@ -9,6 +9,8 @@ let arrayResults = [];
 
 const cards = document.getElementsByClassName("cards");
 
+const figure = document.getElementsByTagName('span');
+
 const timer = document.getElementById('timer');
 
 const tagMoves = document.getElementById('moves');
@@ -38,34 +40,19 @@ function shuffle(array) {
 
 shuffle(emojis);
 
-// ESTE BUCLE FOR HACE:
+// Asignamos los emojis a cada carta
+for(let i = 0 ; i < figure.length ; i++) {
 
-// 1. Crear elementos <div>
-// 2. Ligarlos al elemento <section> con id tableGame
-// 3. Añadir a cada element <div> las clases cards y back
-// 4. Crear elementos <span>
-// 5. Ligar cada elemento <span> a un elemeto <div>
-// 6. Añadir a cada elemento <span> la clase dispNone
-// 7. Añadir a cada elemento <span> el emoji correspondiente
-// 8. Añadir a cada elemento <div> un atributo id = identificador
-// 9. Añadir a cada elemento <div> un evento de ratón = click
-
-for(let i = 0; i < emojis.length; i ++) {
-    const divs = document.createElement('div');
-    document.getElementById('tableGame').appendChild(divs);
-    divs.setAttribute('id', 'div' + i);
-    divs.addEventListener("click", flipCard);
-
-    divs.classList.add('cards', 'back');
-
-    const figure = document.createElement('span');
-    divs.appendChild(figure);
-    figure.classList.add('dispNone');
-
-    figure.innerHTML = String.fromCodePoint(emojis[i]);
+    figure[i].innerHTML = String.fromCodePoint(emojis[i]);
+  
 }
 
-figure = document.getElementsByTagName('span');
+// Añadimos a cada carta un ID e interacción con click de ratón
+for(let i = 0; i < cards.length; i++) {
+    cards[i].setAttribute('id', 'div' + i);
+    cards[i].addEventListener("click", flipCard);
+}
+
 
 // Función que levanta la carta y muestra la figura/emoji
 function flipCard() { //REDEFINIR FUNCION
@@ -88,7 +75,7 @@ function flipCard() { //REDEFINIR FUNCION
 
     if(arrayResults.length > 1) {
 
-        checkPairing(figure);
+        checkPairing();
         movesCount();
 
     }  
@@ -97,7 +84,7 @@ function flipCard() { //REDEFINIR FUNCION
 
 
 // Comprovar si las dos cartas levantadas tienen la misma figura
-function checkPairing(figure) {
+function checkPairing() {
 
 
     if(arrayResults[0] === arrayResults[1]) {

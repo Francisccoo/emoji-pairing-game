@@ -30,10 +30,21 @@ body, section {
   background-color: white;
 }
 
+
+  .firstRow, .secondRow, .thirdRow, .fourthRow, .fifthRow, .sixthRow {
+    width: 100%;
+    height: auto;
+    background-color: #fff0;
+  }
+
+#tableGame div {
+      display: flex;
+      /* flex-direction: row; */
+  }
+
   #tableGame {
     display: grid;
     justify-content: center;
-    grid-template-columns: auto auto auto auto auto auto;
   }
 
   #tableInfo {
