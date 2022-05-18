@@ -13,6 +13,8 @@ const timer = document.getElementById('timer');
 
 const tagMoves = document.getElementById('moves');
 
+const tableGame = document.getElementById('tableGame');
+
 let counterClicks = 0;
 
 let moves = 0;
@@ -99,6 +101,7 @@ function flipCard() { //REDEFINIR FUNCION
 // Comprovar si las dos cartas levantadas tienen la misma figura
 function checkPairing(figure) {
 
+    tableGame.classList.add('noClick');
 
     if(arrayResults[0] === arrayResults[1]) {
 
@@ -108,7 +111,9 @@ function checkPairing(figure) {
             if(!figure[i].classList.contains('dispNone')) {
                 cards[i].classList.add('checked');
             }
-        }     
+        }    
+        
+        tableGame.classList.remove('noClick');
     }
     else {
 
@@ -127,6 +132,8 @@ function foldCards() {
                 figure[i].classList.toggle('dispNone');  
         }
     }     
+
+    tableGame.classList.remove('noClick');
 }
 
 function movesCount() {
