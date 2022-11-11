@@ -62,8 +62,8 @@ body, section {
 span {
   font-size: 35px;
   position: absolute;
-  top: 50%;
-  margin-top: -30px;
+  top: 15%;
+  /* margin-top: -30px; */
   left: 5px;
 }
 
