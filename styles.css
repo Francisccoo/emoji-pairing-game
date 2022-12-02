@@ -1,3 +1,13 @@
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 430px) {
+
+body, section {
+  background-color: #000000 !important;
+}
+
+}
+
 h1 {
   text-align: center;
 }

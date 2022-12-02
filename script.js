@@ -53,6 +53,7 @@ shuffle(emojis);
 // 9. Añadir a cada elemento <div> un evento de ratón = click
 
 for(let i = 0; i < emojis.length; i ++) {
+
     const divs = document.createElement('div');
     document.getElementById('tableGame').appendChild(divs);
     divs.setAttribute('id', 'div' + i);
